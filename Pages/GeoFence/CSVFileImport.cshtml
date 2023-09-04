@@ -1,0 +1,29 @@
+﻿@page
+@model GeoFence_VehicleNonAvailability.Pages.GeoFence.CSVFileImportModel
+@{
+    var message = ViewData["Message"]?.ToString(); // Convert to string if not null
+}
+<div class="text-light bg-black row mb-3">
+    <form method="post" enctype="multipart/form-data" class="bg-black">
+        <h1 class="mb-3">CSV File Import</h1>
+
+        @if (!string.IsNullOrWhiteSpace(message))
+        {
+            <div class="alert alert-success" role="alert">
+                @message
+            </div>
+        }
+        <div class="container">
+            <div class="mb-3">
+                <label class="form-label" for="csvFile">Select CSV File : </label>
+                <input type="file" class="form-control" id="csvFile" name="csvFile" />
+            </div>
+            <div class="mb-3 d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary" asp-page-handler="Import">Import Data</button>
+                <button type="submit" class="btn btn-secondary" asp-page-handler="Close">Close</button>
+            </div>
+        </div>
+
+
+    </form>
+</div>

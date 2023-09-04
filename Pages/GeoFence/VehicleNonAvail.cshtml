@@ -1,0 +1,45 @@
+﻿@page
+@model GeoFence_VehicleNonAvailability.Pages.GeoFence.VehicleNonAvailModel
+@{
+}
+
+
+<div class="text-light bg-dark row mb-3">
+    <form method="post" class="bg-dark">
+        <h1 class="mb-3 text-center">Vehicle Non Availability Details</h1>
+
+        <div class="container">
+            <div class="mb-3">
+                <label class="form-label" for="MonthStartDate">Select Month Start Date : </label>
+                <input type="date" id="startDate" name="startDate" />
+                @*</div>*@
+                @*<div class="mb-3 d-flex justify-content-between">*@
+                <button type="submit" class="btn btn-primary" asp-page-handler="Display">Display Data</button>
+                <button type="submit" class="btn btn-secondary" asp-page-handler="Close">Close</button>
+            </div>
+        </div>
+        @if (Model.vehicleNonAvailabilities != null)
+        {
+            <h3 class="mb-3">Sold Vehicles Detail</h3>
+            <table class="table text-light">
+                <thead>
+                    <tr>
+                        <th>Number of Vehicles Sold</th>
+                        <th>Number of hours per week during which no vehicles are available (inside the geofence)</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var nonavailvehicle in Model.vehicleNonAvailabilities)
+                    {
+                        <tr>
+                            <td>@nonavailvehicle.VehiclesNOTAvailableCount</td>
+                            <td>@nonavailvehicle.NoOfHoursPerWeek</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        }
+    </form>
+</div>
